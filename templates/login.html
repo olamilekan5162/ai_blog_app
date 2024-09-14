@@ -1,0 +1,60 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'main.css' %}">
+    <title>Login</title>
+</head>
+<body class="bg-gray-100 font-sans antialiased">
+
+    <!-- vav bar -->
+    <nav class="bg-blue-600 p-4 text-white flex justify-between">
+        <div>
+            <h1 class="text-3xl font-bold">AI Blog Generator</h1>
+        </div>
+        <div>
+            <a href="{% url 'login' %}" class="text-white hover:underline">Login</a>
+            <a href="{% url 'signup' %}" class="text-white hover:underline ml-6">Signup</a>
+        </div>
+        
+    </nav>
+
+    <!-- main content -->
+     <div class="flex item-center justify-center mt-24">
+        <div class="bg-white p-8 shadow-md rounded-lg max-w-md w-full">
+            
+            <!-- login form  -->
+
+            <form action="{% url 'login' %}" class="space-y-4" method="post">
+                {% csrf_token %}
+
+                {% if error_message %}
+                    
+                <div class="text-center" style="color: red;">
+                    <h2>{{error_message}}</h2>
+                </div>
+                {% endif %}
+                <h2 class="text-xl font-semibold text-center">Login</h2>
+                <div>
+                    <label for="username" class="block mb-1 font-medium">Username</label>
+                    <input type="text" id="username" name="username" placeholder="Enter your username..." class="w-full p-2  border rounded border-blue-400">
+                </div>
+                <div>
+                    <label for="password" class="block mb-1 font-medium">Password</label>
+                    <input type="password" id="password" name="password" placeholder="Enter your password..." class="w-full p-2  border rounded border-blue-400">
+                </div>
+                <button type="submit" class="w-full bg-blue-600 text-white border rounded hover:bg-blue-700 ">Login</button>
+            </form>
+
+        </div>
+     </div>
+
+
+
+    <footer class="text-center p-4 text-black mt-6">
+        Powered by RubyTech
+    </footer>
+</body>
+</html>
